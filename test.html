@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy Links to Clipboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .columns {
+            display: flex;
+            justify-content: center;
+        }
+        .column {
+            flex: 1;
+            padding: 10px;
+            max-width: 300px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            margin-right: 10px;
+            flex: 1;
+        }
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Links:</h1>
+    <div class="columns">
+        <div class="column">
+            <ul>
+                <li><a href="https://www.example.com" id="link1">Example Website</a><button onclick="copyLink('link1')">Copy Link</button></li>
+                <li><a href="https://www.google.com" id="link2">Google</a><button onclick="copyLink('link2')">Copy Link</button></li>
+                <!-- Add more links here -->
+            </ul>
+        </div>
+        <div class="column">
+            <ul>
+                <li><a href="https://www.github.com" id="link3">GitHub</a><button onclick="copyLink('link3')">Copy Link</button></li>
+                <li><a href="https://www.microsoft.com" id="link4">Microsoft</a><button onclick="copyLink('link4')">Copy Link</button></li>
+                <!-- Add more links here -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function copyLink(linkId) {
+            var linkElement = document.getElementById(linkId);
+            var tempInput = document.createElement('input');
+            tempInput.value = linkElement.href;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            alert('Link copied to clipboard: ' + linkElement.href);
+        }
+    </script>
+</body>
+</html>
